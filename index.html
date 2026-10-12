@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deleites Pastelería | Momentos Dulces e Inolvidables</title>
+    <!-- Fuentes Elegantes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-main: #1a1518;          /* Fondo oscuro elegante */
+            --bg-surface: #241d21;       /* Tono superficie cálido */
+            --bg-card: #2f262b;          /* Tono tarjeta refinado */
+            --cream-bright: #fcf9f5;     /* Crema claro para navbar y contacto */
+            --cream-soft: #f8f1ea;       /* Crema suave */
+            --cream-muted: #d9cac1;      /* Texto secundario */
+            --accent-rose: #d4839c;      /* Rosa pastel elegante */
+            --accent-rose-hover: #e09bb2;/* Rosa claro hover */
+            --chocolate-deep: #20171c;   /* Texto oscuro */
+            --transition-smooth: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--cream-soft);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, .serif-title {
+            font-family: 'Playfair Display', serif;
+            letter-spacing: -0.01em;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: var(--transition-smooth);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- NAVEGACIÓN --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: var(--cream-bright);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            border-bottom: 1px solid rgba(212, 131, 156, 0.15);
+        }
+
+        .nav-container {
+            max-width: 1250px;
+            margin: 0 auto;
+            padding: 0.9rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #deleiteslogo {
+            border-radius: 50%;
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            text-decoration: none;
+            color: var(--chocolate-deep);
+        }
+
+        .brand-logo img {
+            height: 88px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #4a3b43;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-rose);
+        }
+
+        .nav-btn {
+            background-color: var(--chocolate-deep);
+            color: var(--cream-soft) !important;
+            padding: 0.55rem 1.4rem;
+            border-radius: 40px;
+            font-weight: 500 !important;
+            transition: var(--transition-smooth) !important;
+        }
+
+        .nav-btn:hover {
+            background-color: var(--accent-rose);
+            color: var(--chocolate-deep) !important;
+            transform: translateY(-2px);
+        }
+
+        /* --- HERO --- */
+        .hero {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10rem 2rem 4rem;
+            text-align: center;
+            background: linear-gradient(180deg, var(--bg-main) 0%, var(--bg-surface) 100%);
+        }
+
+        .hero-content {
+            max-width: 780px;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--accent-rose);
+            margin-bottom: 1.2rem;
+            font-weight: 600;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.3rem, 4.5vw, 4rem);
+            line-height: 1.15;
+            margin-bottom: 1.4rem;
+            color: var(--cream-soft);
+            font-weight: 500;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--cream-muted);
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+            max-width: 620px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background-color: var(--cream-soft);
+            color: var(--bg-main);
+            padding: 0.95rem 2.2rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition-smooth);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-rose);
+            color: var(--chocolate-deep);
+            transform: translateY(-2px);
+        }
+
+        /* --- SOBRE NOSOTROS --- */
+        .about-section {
+            padding: 6rem 2rem;
+            background-color: var(--bg-surface);
+            border-top: 1px solid rgba(217, 202, 193, 0.05);
+            border-bottom: 1px solid rgba(217, 202, 193, 0.05);
+        }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 2.4rem;
+            color: var(--cream-soft);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text p {
+            color: var(--cream-muted);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            font-weight: 300;
+            margin-bottom: 1.2rem;
+        }
+
+        .about-img-box {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            background-color: var(--bg-card);
+            border: 1px solid rgba(217, 202, 193, 0.08);
+            height: 380px;
+        }
+
+        .about-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* --- BENEFICIOS --- */
+        .features-section {
+            padding: 5rem 2rem;
+            background-color: var(--bg-main);
+            border-bottom: 1px solid rgba(217, 202, 193, 0.05);
+        }
+
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+            text-align: center;
+        }
+
+        .feature-box {
+            padding: 2rem 1.5rem;
+            background-color: var(--bg-card);
+            border-radius: 16px;
+            border: 1px solid rgba(217, 202, 193, 0.05);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            color: var(--accent-rose);
+            margin-bottom: 1rem;
+        }
+
+        .feature-box h3 {
+            font-size: 1.3rem;
+            color: var(--cream-soft);
+            margin-bottom: 0.8rem;
+        }
+
+        .feature-box p {
+            color: var(--cream-muted);
+            font-size: 0.95rem;
+            font-weight: 300;
+        }
+
+        /* --- CATÁLOGO MOSAICO --- */
+        .catalog-section {
+            padding: 6rem 2rem;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.4rem;
+            color: var(--cream-soft);
+            margin-bottom: 0.6rem;
+            font-weight: 500;
+        }
+
+        .section-title p {
+            color: var(--accent-rose);
+            font-size: 1rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            grid-auto-rows: 320px;
+            gap: 1.8rem;
+        }
+
+        .gallery-item.tall {
+            grid-row: span 2;
+        }
+
+        .gallery-item.wide {
+            grid-column: span 2;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            background-color: var(--bg-card);
+            border: 1px solid rgba(217, 202, 193, 0.05);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(26, 21, 24, 0.92) 0%, rgba(26, 21, 24, 0.4) 60%, transparent 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2rem;
+            opacity: 0;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            transform: translateY(10px);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .item-title {
+            font-size: 1.35rem;
+            color: var(--cream-soft);
+            margin-bottom: 0.3rem;
+        }
+
+        .item-desc {
+            font-size: 0.88rem;
+            color: var(--cream-muted);
+            margin-bottom: 1.2rem;
+            line-height: 1.4;
+        }
+
+        .item-action {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .item-price {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            color: var(--accent-rose);
+            font-weight: 600;
+        }
+
+        .order-btn {
+            background-color: rgba(248, 241, 234, 0.15);
+            backdrop-filter: blur(8px);
+            color: var(--cream-soft);
+            padding: 0.5rem 1.1rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid rgba(248, 241, 234, 0.2);
+            transition: var(--transition-smooth);
+        }
+
+        .order-btn:hover {
+            background-color: var(--cream-soft);
+            color: var(--bg-main);
+        }
+
+        /* --- PREGUNTAS FRECUENTES --- */
+        .faq-section {
+            padding: 6rem 2rem;
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background-color: var(--bg-surface);
+            border-radius: 12px;
+            margin-bottom: 1.2rem;
+            border: 1px solid rgba(217, 202, 193, 0.08);
+            overflow: hidden;
+            transition: border-color 0.3s ease;
+        }
+
+        .faq-item.is-open {
+            border-color: rgba(212, 131, 156, 0.4);
+        }
+
+        .faq-question {
+            padding: 1.4rem 1.8rem;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--cream-soft);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+            transition: color 0.3s ease;
+        }
+
+        .faq-question:hover {
+            color: var(--accent-rose);
+        }
+
+        .faq-arrow {
+            font-size: 0.8rem;
+            color: var(--accent-rose);
+            transition: transform 0.4s ease;
+            display: inline-block;
+        }
+
+        .faq-item.is-open .faq-arrow {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer-drawer {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .faq-item.is-open .faq-answer-drawer {
+            grid-template-rows: 1fr;
+        }
+
+        .faq-answer-inner {
+            overflow: hidden;
+        }
+
+        .faq-answer-text {
+            padding: 0 1.8rem 1.4rem;
+            color: var(--cream-muted);
+            font-size: 0.95rem;
+            font-weight: 300;
+            line-height: 1.6;
+            border-top: 1px solid rgba(217, 202, 193, 0.05);
+        }
+
+        /* --- CONTACTO --- */
+        .contact-section {
+            background-color: var(--cream-bright);
+            padding: 6rem 2rem 7rem;
+            color: var(--chocolate-deep);
+        }
+
+        .contact-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-section h2 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: var(--chocolate-deep);
+            margin-bottom: 3rem;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.8rem;
+        }
+
+        .contact-card {
+            background-color: #ffffff;
+            border-radius: 16px;
+            padding: 2.2rem 1.5rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--chocolate-deep);
+            margin-bottom: 0.6rem;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .contact-card p, .contact-card a {
+            font-size: 0.95rem;
+            color: #665b52;
+            text-decoration: none;
+            font-weight: 400;
+        }
+
+        .contact-card a:hover {
+            color: var(--accent-rose);
+        }
+
+        footer {
+            padding: 2.5rem 2rem;
+            text-align: center;
+            color: #8c7a82;
+            font-size: 0.85rem;
+            background-color: var(--bg-main);
+        }
+
+        /* --- BOTÓN FLOTANTE WHATSAPP --- */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 2.2rem;
+            right: 2.2rem;
+            background-color: #25d366;
+            color: white;
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+            z-index: 999;
+            transition: transform 0.3s ease;
+            text-decoration: none;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.08);
+        }
+
+        .whatsapp-float svg {
+            width: 28px;
+            height: 28px;
+            fill: white;
+        }
+
+        @media (max-width: 900px) {
+            .features-container, .about-container, .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            .gallery-item.tall, .gallery-item.wide {
+                grid-row: span 1;
+                grid-column: span 1;
+            }
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navegación -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="brand-logo">
+                <img src="deleites.jpg" alt="Deleites Pastelería Logo" onerror="this.style.display='none'" id="deleiteslogo">
+            </a>
+            <ul class="nav-links">
+                <li><a href="#nosotros">Sobre nosotros</a></li>
+                <li><a href="#catalogo">Catálogo</a></li>
+                <li><a href="#preguntas">Preguntas frecuentes</a></li>
+                <li><a href="#contacto" class="nav-btn">Hacer pedido</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content reveal">
+            <span class="hero-tag">Pastelería & Cafetería Artesanal</span>
+            <h1>Hacemos de Cada Ocasión un Momento Dulce e Inolvidable</h1>
+            <p>Especialistas en pasteles personalizados, mini cakes de diseño, budines esponjosos y repostería fina para consentir tu paladar.</p>
+            <a href="#catalogo" class="btn-primary">Ver catálogo de especialidades</a>
+        </div>
+    </section>
+
+    <!-- Sobre Nosotros -->
+    <section id="nosotros" class="about-section">
+        <div class="about-container reveal">
+            <div class="about-text">
+                <h2>Sobre nosotros</h2>
+                <p>En Deleites transformamos cada celebración en una experiencia única a través del arte de la pastelería fina y el buen sabor.</p>
+                <p>Te invitamos a visitar nuestra nueva cafetería y probar nuestra variedad de pasteles artesanales, budines, galletas recién horneadas y postres para cada día.</p>
+            </div>
+            <div class="about-img-box">
+                <img src="dt3.jpg" alt="Pastelería fina Deleites">
+            </div>
+        </div>
+    </section>
+
+    <!-- Beneficios -->
+    <section class="features-section">
+        <div class="features-container reveal">
+            <div class="feature-box">
+                <div class="feature-icon">✦</div>
+                <h3>Pasteles Personalizados</h3>
+                <p>Diseños exclusivos adaptados al tema de tu cumpleaños, boda o evento especial.</p>
+            </div>
+            <div class="feature-box">
+                <div class="feature-icon">✦</div>
+                <h3>Recetas Artesanales</h3>
+                <p>Horneados diariamente con mantequilla de alta calidad e ingredientes selectos.</p>
+            </div>
+            <div class="feature-box">
+                <div class="feature-icon">✦</div>
+                <h3>Cajas de Repostería</h3>
+                <p>Combinaciones variadas de budines, alfajores y minipostres listos para obsequiar.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Catálogo Mosaico -->
+    <section id="catalogo" class="catalog-section">
+        <div class="section-title reveal">
+            <h2>Nuestra Colección de Pastelería</h2>
+            <p>Pasa el cursor sobre cada especialidad para ver detalles y realizar tu pedido.</p>
+        </div>
+
+        <div class="gallery-grid">
+
+            <div class="gallery-item tall reveal">
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=1000&auto=format&fit=crop" alt="Pastel Artesanal de Chocolate">
+                <div class="gallery-overlay">
+                    <h3 class="item-title">Pastel de Chocolate & Crema</h3>
+                    <p class="item-desc">Cobertura suave de ganache con capas esponjosas de cacao de alta calidad.</p>
+                    <div class="item-action">
+                        <span class="item-price">C$ 550</span>
+                        <a href="https://wa.me/50585900665" target="_blank" class="order-btn">Pedir por WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item reveal">
+                <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?q=80&w=1000&auto=format&fit=crop" alt="Caja de Galletas Artesanales">
+                <div class="gallery-overlay">
+                    <h3 class="item-title">Caja Surtida de Galletas</h3>
+                    <p class="item-desc">Galletas horneadas con chispas de chocolate y centro suave.</p>
+                    <div class="item-action">
+                        <span class="item-price">C$ 250</span>
+                        <a href="https://wa.me/50585900665" target="_blank" class="order-btn">Pedir por WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item reveal">
+                <img src="dt1.webp" alt="Mini Cake Temático">
+                <div class="gallery-overlay">
+                    <h3 class="item-title">Mini Cake de Frutos Rojos</h3>
+                    <p class="item-desc">Diseños delicados en crema con rellenos artesanales de la casa.</p>
+                    <div class="item-action">
+                        <span class="item-price">C$ 320</span>
+                        <a href="https://wa.me/50585900665" target="_blank" class="order-btn">Pedir por WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item wide reveal">
+                <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?q=80&w=1000&auto=format&fit=crop" alt="Budín Glaseado de Vainilla">
+                <div class="gallery-overlay">
+                    <h3 class="item-title">Budín Glaseado Tradicional</h3>
+                    <p class="item-desc">Masa húmeda recién horneada con un toque de limonello y nueces.</p>
+                    <div class="item-action">
+                        <span class="item-price">C$ 280</span>
+                        <a href="https://wa.me/50585900665" target="_blank" class="order-btn">Pedir por WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item reveal">
+                <img src="https://images.unsplash.com/photo-1519676867240-f03562e64548?q=80&w=1000&auto=format&fit=crop" alt="Crepas con Crema y Fresa">
+                <div class="gallery-overlay">
+                    <h3 class="item-title">Crepas con Crema y Fresa</h3>
+                    <p class="item-desc">Masa fina doblada con relleno suave de crema Chantilly y fresas.</p>
+                    <div class="item-action">
+                        <span class="item-price">C$ 200</span>
+                        <a href="https://wa.me/50585900665" target="_blank" class="order-btn">Pedir por WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item reveal">
+                <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?q=80&w=1000&auto=format&fit=crop" alt="Brownies Intensos de Cacao">
+                <div class="gallery-overlay">
+                    <h3 class="item-title">Brownies de Cacao Puro</h3>
+                    <p class="item-desc">Cuadros horneados con cubierta crujiente y centro cremoso.</p>
+                    <div class="item-action">
+                        <span class="item-price">C$ 220</span>
+                        <a href="https://wa.me/50585900665" target="_blank" class="order-btn">Pedir por WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item reveal">
+                <img src="https://images.unsplash.com/photo-1533134242443-d4fd215305ad?q=80&w=1000&auto=format&fit=crop" alt="Cheesecake de Arándanos">
+                <div class="gallery-overlay">
+                    <h3 class="item-title">Cheesecake de Arándanos</h3>
+                    <p class="item-desc">Base crujiente de galleta con crema queso y jalea casera de frutos.</p>
+                    <div class="item-action">
+                        <span class="item-price">C$ 350</span>
+                        <a href="https://wa.me/50585900665" target="_blank" class="order-btn">Pedir por WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item wide reveal">
+                <img src="dt2.jpg" alt="Pastel Elegante para Eventos">
+                <div class="gallery-overlay">
+                    <h3 class="item-title">Pastel Elegante para Eventos</h3>
+                    <p class="item-desc">Diseños de pisos para quinceañeras, bodas y eventos especiales.</p>
+                    <div class="item-action">
+                        <span class="item-price">C$ 850</span>
+                        <a href="https://wa.me/50585900665" target="_blank" class="order-btn">Pedir por WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item reveal">
+                <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?q=80&w=1000&auto=format&fit=crop" alt="Copa Especial Deleites">
+                <div class="gallery-overlay">
+                    <h3 class="item-title">Copa Especial de la Casa</h3>
+                    <p class="item-desc">Capas de brownie, helado artesanal y sirope de chocolate puro.</p>
+                    <div class="item-action">
+                        <span class="item-price">C$ 180</span>
+                        <a href="https://wa.me/50585900665" target="_blank" class="order-btn">Pedir por WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Preguntas Frecuentes -->
+    <section id="preguntas" class="faq-section">
+        <div class="section-title reveal">
+            <h2>Preguntas Frecuentes</h2>
+            <p>Resolvemos tus dudas para que tu pedido sea perfecto.</p>
+        </div>
+
+        <div class="faq-item reveal">
+            <div class="faq-question">
+                <span>¿Cómo puedo realizar un pedido personalizado?</span>
+                <span class="faq-arrow">▼</span>
+            </div>
+            <div class="faq-answer-drawer">
+                <div class="faq-answer-inner">
+                    <div class="faq-answer-text">
+                        Puedes escribirnos directamente a nuestro número de WhatsApp indicando la temática, fecha de tu evento y el tipo de pastel o postre que deseas.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-item reveal">
+            <div class="faq-question">
+                <span>¿Con cuánto tiempo de anticipación debo encargar un pastel?</span>
+                <span class="faq-arrow">▼</span>
+            </div>
+            <div class="faq-answer-drawer">
+                <div class="faq-answer-inner">
+                    <div class="faq-answer-text">
+                        Recomendamos hacer tus encargos de pasteles personalizados con al menos 2 a 3 días de anticipación.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-item reveal">
+            <div class="faq-question">
+                <span>¿Tienen servicio de entrega a domicilio?</span>
+                <span class="faq-arrow">▼</span>
+            </div>
+            <div class="faq-answer-drawer">
+                <div class="faq-answer-inner">
+                    <div class="faq-answer-text">
+                        Sí, coordinamos entregas seguras para que tus pasteles y postres lleguen en perfecto estado.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-item reveal">
+            <div class="faq-question">
+                <span>¿Dónde está ubicada la cafetería?</span>
+                <span class="faq-arrow">▼</span>
+            </div>
+            <div class="faq-answer-drawer">
+                <div class="faq-answer-inner">
+                    <div class="faq-answer-text">
+                        Te esperamos en nuestra nueva cafetería para disfrutar de postres recién horneados y bebidas en un ambiente acogedor. Consúltanos la ubicación exacta por WhatsApp.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-item reveal">
+            <div class="faq-question">
+                <span>¿Qué métodos de pago aceptan?</span>
+                <span class="faq-arrow">▼</span>
+            </div>
+            <div class="faq-answer-drawer">
+                <div class="faq-answer-inner">
+                    <div class="faq-answer-text">
+                        Aceptamos transferencias bancarias y pagos en efectivo al momento de retirar o recibir tu pedido.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto -->
+    <section id="contacto" class="contact-section">
+        <div class="contact-container reveal">
+            <h2>Contáctanos</h2>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <h3>Atención al Cliente</h3>
+                    <p>Deleites Pastelería</p>
+                </div>
+                <div class="contact-card">
+                    <h3>WhatsApp</h3>
+                    <a href="https://wa.me/50585900665" target="_blank">+505 8590-0665</a>
+                </div>
+                <div class="contact-card">
+                    <h3>Ubicación</h3>
+                    <p>Visítanos en nuestra cafetería</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Deleites Pastelería. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Botón flotante WhatsApp -->
+    <a href="https://wa.me/50585900665" target="_blank" class="whatsapp-float" aria-label="WhatsApp">
+        <svg viewBox="0 0 32 32">
+            <path d="M16 2a13 13 0 0 0-11 20l-2 7 7-2a13 13 0 1 0 6-25zm0 24a11 11 0 0 1-5.6-1.5l-.4-.2-4.2 1.1 1.1-4.1-.3-.4A11 11 0 1 1 16 26zm6-8c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-.9 1.2-.3.2-.6 0a8 8 0 0 1-2.4-1.5 9 9 0 0 1-1.7-2.1c-.2-.3 0-.5.1-.6l.4-.5c.1-.2.2-.3.3-.5a.4.4 0 0 0 0-.4c-.1-.1-.7-1.7-.9-2.3s-.5-.5-.7-.5h-.6a1.2 1.2 0 0 0-.9.4 3.7 3.7 0 0 0-1.1 2.7 6.4 6.4 0 0 0 1.4 3.4 14.6 14.6 0 0 0 5.6 4.9c2.2.9 2.7.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.2-.1-.5-.2-.8-.3z"/>
+        </svg>
+    </a>
+
+    <!-- JavaScript para Acordeón y Animaciones -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const questions = document.querySelectorAll(".faq-question");
+            questions.forEach(q => {
+                q.addEventListener("click", function() {
+                    const parent = this.closest(".faq-item");
+                    parent.classList.toggle("is-open");
+                });
+            });
+
+            const reveals = document.querySelectorAll(".reveal");
+            const revealOnScroll = function() {
+                reveals.forEach(element => {
+                    const windowHeight = window.innerHeight;
+                    const elementTop = element.getBoundingClientRect().top;
+                    if (elementTop < windowHeight - 100) {
+                        element.classList.add("active");
+                    }
+                });
+            };
+
+            window.addEventListener("scroll", revealOnScroll);
+            revealOnScroll();
+        });
+    </script>
+</body>
+</html>
